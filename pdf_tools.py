@@ -4,10 +4,11 @@
 #          and create a third file or extract individual pages from a pdf file.
 # Authors: Marwan Hussein Galal \ Belal Alaa EL-Sabrawy
 # version: 1.1
-#\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/#
+# \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/#
 import PyPDF2
 
-def merge(): #Belal
+
+def merge():  # Belal
     from PyPDF2 import PdfWriter
     # Get the number of PDFs to merge from the user and handle less than 2 input
     while True:
@@ -35,9 +36,10 @@ def merge(): #Belal
     merger.write(f"{name}.pdf")
     # Close the merger
     merger.close()
-    print ("operation has been done!")
+    print("operation has been done!")
 
-def extract(): #Marwan
+
+def extract():  # Marwan
     from PyPDF2 import PdfWriter, PdfReader
     # Get the name of the PDF from the user
     input_name = input("Enter the name of the PDF: ")
@@ -60,9 +62,10 @@ def extract(): #Marwan
     writer.write(f"{name}.pdf")
     # Close the writer
     writer.close()
-    print ("operation has been done!")
+    print("operation has been done!")
 
-def split(): #Marwan
+
+def split():  # Marwan
     from PyPDF2 import PdfWriter, PdfReader
     # Get the name of the PDF from the user
     input_name = input("Enter the name of the PDF: ")
@@ -79,11 +82,12 @@ def split(): #Marwan
         writer.write(f"{name}.pdf")
     # Close the writer
     writer.close()
-    print ("operation has been done!")
+    print("operation has been done!")
 
-def main_menu(): #Marwan
+
+def main_menu():  # Marwan
     # the menu options
-    main_menu ="""
+    main_menu = """
                 |**Main Menu**|
     ---------------------------------------
     A) Merge files
@@ -99,21 +103,23 @@ def main_menu(): #Marwan
             try:
                 merge()
             except FileNotFoundError:
-                print ("files are not found in the current directory!")
+                print("files are not found in the current directory!")
         elif choice == "B":
             try:
                 extract()
             except FileNotFoundError:
-                print ("file not found in the current directory!")
+                print("file not found in the current directory!")
         elif choice == "C":
             try:
                 split()
             except FileNotFoundError:
-                print ("file not found in the current directory!")
+                print("file not found in the current directory!")
         elif choice == "D":
-            print ("\n******** Good Bye ********\n")
+            print("\n******** Good Bye ********\n")
             break
         else:
-            print ("Please enter a valid choice")
-#================================================================================================================#
+            print("Please enter a valid choice")
+# ================================================================================================================#
+
+
 main_menu()
