@@ -3,23 +3,23 @@
 #          The application will allow the user to merge two pdf files together
 #          and create a third file or extract individual pages from a pdf file.
 # Authors: Marwan Hussein Galal \ Belal Alaa EL-Sabrawy
-# version: 1.1
+# version: 1.2
 # \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/#
 import PyPDF2
-
+import os
 
 def merge():  # Belal
     from PyPDF2 import PdfWriter
     # Get the number of PDFs to merge from the user and handle less than 2 input
     while True:
-        x = int(input("How many PDFs would you like to merge: "))
-        if x < 2:
+        number_of_pdfs = int(input("How many PDFs would you like to merge: "))
+        if number_of_pdfs < 2:
             print("You must enter at least 2.")
         else:
             break
     pdfs = []
     # Collect names of PDF files from the user
-    for i in range(0, x, 1):
+    for i in range(0, number_of_pdfs, 1):
         input_name = input(f"Enter the name of the #{i + 1} PDF: ")
         pdf = f"{input_name}.pdf"
         pdfs.append(pdf)
@@ -72,6 +72,10 @@ def split():  # Marwan
     pdf = f"{input_name}.pdf"
     # Create a PdfReader object for reading the PDF
     read = PdfReader(pdf)
+    # Make a folder with the pdf file name
+    os.mkdir(f"{input_name}")
+    # Open the folder to output all pdfs in it
+    os.chdir(f"{input_name}")
     # Create a PdfWriter object for writing each individual page
     for i in range(len(read.pages)):
         writer = PdfWriter()
@@ -82,18 +86,20 @@ def split():  # Marwan
         writer.write(f"{name}.pdf")
     # Close the writer
     writer.close()
+    # Go back to the main directory
+    os.chdir("..")
     print("operation has been done!")
 
 
 def main_menu():  # Marwan
     # the menu options
     main_menu = """
-                |**Main Menu**|
-    ---------------------------------------
-    A) Merge files
-    B) Extract a page from file
-    C) Split file into separate pages
-    D) Exit
+            |**Main Menu**|
+---------------------------------------
+A) Merge files
+B) Extract a page from file
+C) Split file into separate pages
+D) Exit
     """
     # Continuously display the menu and handle user choices
     while True:
@@ -120,6 +126,4 @@ def main_menu():  # Marwan
         else:
             print("Please enter a valid choice")
 # ================================================================================================================#
-
-
 main_menu()
