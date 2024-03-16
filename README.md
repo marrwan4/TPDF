@@ -7,9 +7,6 @@ PDF Tools is a Python application designed for managing PDF files. It allows use
 - Marwan Hussein Galal
 - Belal Alaa EL-Sabrawy
 
-## Version
-1.1
-
 ## Usage
 This application provides a command-line interface for the following operations:
 
